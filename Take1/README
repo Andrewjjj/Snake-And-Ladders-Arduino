@@ -1,0 +1,30 @@
+README:
+Assignment 1 Part 2 by:
+Andrew Park 1442834
+Aman Anand 1481975
+---------------------------------------------------------------------------
+Accessories:
+* Arduino Mega Board (AMG) x 2
+* Wires x 5
+---------------------------------------------------------------------------
+Wiring instructions:
+- Arduino 1 (Server)
+- Arduino 2 (Client)
+
+Ard1 Pin 13 <--> Ard1 5V (Acts as Server)
+Ard2 Pin 13 <--> Ard2 GND (Acts as Client)
+
+Ard1 GND <--> Ard2 GND
+Ard1 TX3 <--> Ard2 RX3
+Ard1 RX3 <--> Ard2 TX3
+---------------------------------------------------------------------------
+Assumptions:
+We assume that the user will follow the instructions very carefully. Meaning,
+that no keys will be pressed until promted.
+---------------------------------------------------------------------------
+Instructions:
+1) Wire both Arduinos together
+2) Make sure that each Arduino are acting differently (Server, Client)
+3) Start the program
+4) Wait until you are asked, "Enter what you want to send: "
+5) Enjoy!
