@@ -1,0 +1,7 @@
+Changes Log
+
+2016 12 01 - Added the "Combined" file.
+  combined.cpp inside Combined:
+    - Added some graphics in the Main screen.
+    - Added graphics in the choosing map screen.
+    - Fixed the bug where when the player moves, the previous position was not getting renewed in the proper position.
