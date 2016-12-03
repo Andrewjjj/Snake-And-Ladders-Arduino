@@ -20,11 +20,8 @@ int curr_joy_select =1;
 int posX[30],posY[30];
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 lcd_image_t map_image = { "snake.lcd", 128, 107 };
-lcd_image_t map_image1 = { "snake1.lcd", 80, 59 };
-lcd_image_t map_image2 = { "snake2.lcd", 128, 81 };
-lcd_image_t map_image3 = { "dice.lcd", 40, 39 };
-lcd_image_t map_image4 = { "ladder.lcd", 30, 60 };
 lcd_image_t map_image5 = { "snakes.lcd", 128, 130 };
+lcd_image_t map_image6 = { "sal.lcd", 128, 130 };
 
 int current_screen = 0;
 
@@ -483,50 +480,134 @@ int choose_image(){
     tft.print("1");
     tft.fillTriangle(28, 148, 32, 146, 32, 150, 0x77fd04);
     tft.fillTriangle(98, 148, 94, 146, 94, 150, 0x77fd04);
-    int select=1,prev_select=1;
+    int select=1,prev_select=1,refresh=0;
     while(true){
+      // int v = analogRead(JOY_VERT_ANALOG);
+      // // Serial.println("scan_joystick");
+      // if(v > 550){
+      //   // Serial.println("v1");
+      //   // if(selected==prev_selected){
+      //   selected=2;
+      //   tft.setCursor(38, 114);
+      //   tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
+      //   tft.print("Start Game");
+      //
+      //   tft.setCursor(32, 132);
+      //   tft.setTextColor(ST7735_BLACK, ST7735_WHITE);
+      //   tft.print("Instructions");
+      //
+      //   tft.fillTriangle(26, 118, 24, 116, 24, 120, ST7735_BLACK);
+      //   tft.fillTriangle(110, 118, 112, 116, 112, 120, ST7735_BLACK);
+      //   tft.fillTriangle(26, 136, 24, 134, 24, 138, 0x77fd04);
+      //   tft.fillTriangle(110, 136, 112, 134, 112, 138, 0x77fd04);
+      //   // prev_selected=selected;
+      //   // }
+      // }
+      // if(v < 490){
+      //   // if(selected==prev_selected){
+      //   tft.setCursor(32, 132);
+      //   tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
+      //   tft.print("Instructions");
+      //
+      //   tft.setCursor(38, 114);
+      //   tft.setTextColor(ST7735_BLACK, ST7735_WHITE);
+      //   tft.print("Start Game");
+      //   selected=1;
+      //   tft.fillTriangle(26, 118, 24, 116, 24, 120, 0x77fd04);
+      //   tft.fillTriangle(110, 118, 112, 116, 112, 120, 0x77fd04);
+      //   tft.fillTriangle(26, 136, 24, 134, 24, 138, ST7735_BLACK);
+      //   tft.fillTriangle(110, 136, 112, 134, 112, 138, ST7735_BLACK);
+      //   // prev_selected=selected;
+      //   // }
+      // }
       int h = analogRead(JOY_HORIZ_ANALOG);
       if(h > 550){
+
       tft.fillTriangle(98, 148, 94, 146, 94, 150, ST7735_GREEN);
-        if(select==prev_select && select<2){
+      if(select!=3){
+      tft.fillTriangle(121, 62, 121, 58, 125, 60, ST7735_GREEN);
+    }
+        if(select==prev_select && select<3){
           board_no+=1;
           select+=1;
-          tft.setCursor(80, 144);
-          tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
-          tft.print("2");
-          lcd_image_draw(&map_image5, &tft,
-            0, 0, // upper-left corner of parrot picture
-            0, 0, // upper-left corner of the screen
-            128, 130); // draw all rows and columns of the parrot
-
+          refresh=1;
           prev_select=select;
         }
       }
       else if(h < 450){
+
         tft.fillTriangle(28, 148, 32, 146, 32, 150, ST7735_GREEN);
-        tft.setCursor(80, 144);
-        tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
-        tft.print("1");
+        if(select!=3){
+        tft.fillTriangle(0, 60, 4, 58, 4, 62, ST7735_GREEN);
+      }
         if(select==prev_select && select>1){
           board_no-=1;
           select-=1;
-
-          lcd_image_draw(&map_image, &tft,
-            0, 0, // upper-left corner of parrot picture
-            0, 0, // upper-left corner of the screen
-            128, 107); // draw all rows and columns of the parrot
-            tft.drawRect(0, 107, 128, 23, ST7735_BLACK);
-            tft.fillRect(0, 107, 128, 23, ST7735_BLACK);
-            prev_select=select;
-          }
+          refresh=1;
+          prev_select=select;
+        }
       }
       else{
+
         tft.fillTriangle(28, 148, 32, 146, 32, 150, 0x77fd04);
         tft.fillTriangle(98, 148, 94, 146, 94, 150, 0x77fd04);
+        if(select!=3){
+         tft.fillTriangle(0, 60, 4, 58, 4, 62, 0x77fd04);
+         tft.fillTriangle(121, 62, 121, 58, 125, 60, 0x77fd04);
+        }
+      }
+      if(refresh == 1 && select==1){
+
+        tft.setCursor(80, 144);
+        tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
+        tft.print("1");
+        lcd_image_draw(&map_image, &tft,
+          0, 0, // upper-left corner of picture
+          10, 4, // upper-left corner of the screen
+          107, 107); // draw all rows and columns of the pICTURE
+
+          tft.drawRect(8,2,111,111,tft.Color565(0x00, 0x00, 0xff));
+          tft.fillTriangle(0, 60, 4, 58, 4, 62, 0x77fd04);
+          tft.fillTriangle(121, 62, 121, 58, 125, 60, 0x77fd04);
+          refresh=0;
+      }
+      else if(refresh == 1 && select==2){
+
+        tft.setCursor(80, 144);
+        tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
+        tft.print("2");
+        lcd_image_draw(&map_image5, &tft,
+          0, 23, // upper-left corner of parrot picture
+          10, 4, // upper-left corner of the screen
+          107, 107); // draw all rows and columns of the parrot
+
+          tft.drawRect(8,2,111,111,tft.Color565(0x00, 0x00, 0xff));
+          tft.fillTriangle(0, 60, 4, 58, 4, 62, 0x77fd04);
+          tft.fillTriangle(121, 62, 121, 58, 125, 60, 0x77fd04);
+          refresh=0;
+      }
+
+      else if(refresh == 1 && select==3){
+        tft.setCursor(80, 144);
+        tft.setTextColor(ST7735_WHITE, ST7735_BLACK);
+        tft.print("3");
+        tft.fillRect(0,0,128,130,ST7735_BLACK);
+        tft.setCursor(10, 60);
+        tft.setTextSize(2);
+        tft.setTextColor(ST7735_WHITE);
+        tft.print("Return to");
+        tft.setCursor(10, 76);
+        tft.print("Main Menu");
+        tft.setTextSize(1);
+        refresh=0;
       }
       bool invSelect = digitalRead(JOY_SEL);
-      if(invSelect==0){
+      if(invSelect==0 && select!=3){
         selected=3;
+        return 0;
+      }
+      if(invSelect==0 && select==3){
+        selected=0;
         return 0;
       }
     }
@@ -537,11 +618,13 @@ int chooseMap(){
   tft.setCursor(30, 134);
   tft.setTextColor(ST7735_WHITE);
   tft.print("Choose a Map!");
-
   lcd_image_draw(&map_image, &tft,
     0, 0, // upper-left corner of picture
-    0, 0, // upper-left corner of the screen
-    128, 107); // draw all rows and columns of the pICTURE
+    10, 4, // upper-left corner of the screen
+    107, 107); // draw all rows and columns of the pICTURE
+    tft.drawRect(8,2,111,111,tft.Color565(0x00, 0x00, 0xff));
+    tft.fillTriangle(0, 60, 4, 58, 4, 62, 0x77fd04);
+    tft.fillTriangle(121, 62, 121, 58, 125, 60, 0x77fd04);
   choose_image();
   return 0;
 }
@@ -733,34 +816,17 @@ int menu(){
   tft.fillScreen(0);
   int t_col=1;
   int t_row=1;
-  lcd_image_draw(&map_image1, &tft,
-    0, 0, // upper-left corner of parrot picture
-    48, 1, // upper-left corner of the screen
-    80, 50); // draw all rows and columns of the parrot
-
-  tft.setTextColor(tft.Color565(0xff, 0x00, 0x00));
-  lcd_image_draw(&map_image2, &tft,
-    0, 0, // upper-left corner of parrot picture
-    0, 79, // upper-left corner of the screen
-    128, 81); // draw all rows and columns of the parrot
-  tft.setTextSize(2);
-  lcd_image_draw(&map_image3, &tft,
-    0, 0, // upper-left corner of parrot picture
-    2, 70, // upper-left corner of the screen
-    40, 39); // draw all rows and columns of the parrot
-  tft.setTextWrap(false);
-  lcd_image_draw(&map_image4, &tft,
+  lcd_image_draw(&map_image6, &tft,
     0, 0, // upper-left corner of parrot picture
     0, 0, // upper-left corner of the screen
-    30, 60); // draw all rows and columns of the parrot
-  tft.setCursor(t_col*16, t_row*32);
-  tft.print("SNAKE");
-  tft.setCursor(t_col*56, t_row*48);
-  tft.print("&&");
-  tft.setCursor(t_col*42, t_row*64);
-  tft.setTextWrap(false);
+    128, 160); // draw all rows and columns of the parrot
 
-  tft.print("LADDERS");
+  tft.setTextColor(tft.Color565(0xff, 0x00, 0x00));
+
+  tft.setTextSize(2);
+
+  tft.setTextWrap(false);
+  
   tft.setTextColor(ST7735_WHITE);
   tft.setTextSize(1);
   tft.setCursor(38, t_row*114);
