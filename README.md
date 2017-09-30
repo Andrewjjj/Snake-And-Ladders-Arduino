@@ -11,11 +11,11 @@ Wiring Instructions:
 -Arduino 1 (Server)
 -Arduino 2 (Client)
 
-Ard1 Pin 13 <-> Ard1 5V (Acts as Server)
+Ard1 Pin 13 <-> Ard1 5V (Acts as Server);
 Ard2 Pin 13 <-> Ard2 GND (Acts as Client)
 
-Ard1 GND <->Ard2 GND
-Ard1 TX3 <-> Ard2 RX3
+Ard1 GND <->Ard2 GND;
+Ard1 TX3 <-> Ard2 RX3;
 Ard1 RX3 <-> Ard2 TX3
 
 Instructions:
