@@ -23,4 +23,5 @@ Instructions:
 • Make sure that each Arduino is acting differntly
 • Start the program
 • Wait untill you are asked "Enter what you want to send"
-• Enjoy!!
+
+Enjoy!!
