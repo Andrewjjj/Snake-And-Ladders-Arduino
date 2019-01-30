@@ -8,7 +8,7 @@ The project is coded in C++. I did this as a project for a computing course at t
 ### Table of Contents
 * [Accesories](#accesories)
 * [Wiring Instructions](#wiring-instructions)
-* [Instructions](#instruction)
+* [Instructions](#instructions)
 * [Video Preview](#video-preview)
 
 ---
