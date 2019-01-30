@@ -5,6 +5,14 @@ The project is coded in C++. I did this as a project for a computing course at t
 
 ---
 
+### Table of Contents
+* [Accesories](#accesories)
+* [Wiring Instructions](#wiring-instructions)
+* [Instructions](#instruction)
+* [Video Preview](#video-preview)
+
+---
+
 # Accessories: 
 
 - Arduino Mega Board(AMG) * 2
@@ -32,5 +40,9 @@ Ard1 RX3 <-> Ard2 TX3
 - Make sure that each Arduino is acting differntly
 - Start the program
 - Wait untill you are asked "Enter what you want to send"
+
+# Video Preview:
+
+Available [Here](https://www.youtube.com/watch?v=peyYehICWgo&t=13s&frags=pl%2Cwn)
 
 Enjoy!!
